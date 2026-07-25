@@ -1,7 +1,6 @@
-# Start → Ziel | Vektor | Ebene | MK | RAW
-e2 e4 0,2 1 false none
-g1 f3 -1,2 2 false none
-b8 c6 1,-2 2 false none
-e7 e5 0,-2 1 false none
-f1 c4 -3,3 3 true spark
+# moves.anchor – Startpunkte für Traversal
 
+ANCHORS:
+- forward_start
+- backward_start
+- mirrored_start
