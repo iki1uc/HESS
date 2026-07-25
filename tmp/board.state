@@ -1,9 +1,7 @@
-turn: white
-status: normal
-check: false
-mate: false
-move_count: 4
-last_move: f1→c4
-white_time: 300
-black_time: 300
+# board.state – aktueller Zustand
 
+STATE:
+- turn
+- active player
+- vector pressure
+- carry potential
