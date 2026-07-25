@@ -1,1 +1,11 @@
+# chess.calc – Engine Berechnungen
+
+function mobility(piece):
+    return vector(piece.pos) * piece.force
+
+function pressure(board):
+    return sum(all vectors) / active pieces
+
+function carry_effect(prev, next):
+    return (next.vector - prev.vector)
 
