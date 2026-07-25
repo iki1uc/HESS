@@ -1,1 +1,10 @@
+# chess.6d – 6D Vektorraum
+# Dimensionen: Position, Figur, Farbe, Richtung, Druck, Effekt
+
+DIMENSIONS:
+pos_x, pos_y,
+piece_type,
+color,
+vector_direction,
+carry_effect
 
