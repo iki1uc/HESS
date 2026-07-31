@@ -6,21 +6,23 @@ STATE: ACTIVE
 
 DESCRIPTION:
 HESS ist der Kampfmodus des SCHACH-Systems.
-Wenn C auf HESS zugreift, wird SCHACH zu AIR-SCHACH-BATTLE.
-HESS aktiviert Höhe, Energie, Score und Speed.
+HESS aktiviert AIR-Schach, Mapping, Tiefe, Score und Speed.
 
 LOAD:
-- chess.64
-- chess.6d
-- chess.calc
-- chess.raw
-- board.matrix
-- board.state
-- moves.anchor
-- moves.points
+- core/chess.64
+- core/chess.6d
+- core/chess.calc
+- core/chess.raw
+
+- tmp/board.matrix
+- tmp/board.state
+- tmp/board.cache
+
+- tmp/moves.anchor
+- tmp/moves.points
 
 EXT:
-- h.room (Höhenraum)
+- H/h.room
 - COIN.axiom
 - tetriz.tmp
 - score.tmp
