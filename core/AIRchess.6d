@@ -1,10 +1,21 @@
-# AIRchess.6d – 6D Vektorraum
+# AIRchess.6d – 6D + 6E Vektorraum
 # Dimensionen: Position, Figur, Farbe, Richtung, Druck, Effekt
+# Erweiterungen: Lage, Tiefe, Momentum, Slide, Speed³, Bonus
 
 DIMENSIONS:
-pos_x, pos_y,
+
+# klassische 6D
+pos_x,
+pos_y,
 piece_type,
 color,
 vector_direction,
-carry_effect
+carry_effect,
 
+# AIR-Erweiterungen (6E)
+lage_value,
+tiefe_value,
+momentum_value,
+slide_value,
+speed3_value,
+bonus_value
