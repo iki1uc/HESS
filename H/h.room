@@ -1,0 +1,33 @@
+#HESS-ROOM
+NAME: HESS
+TYPE: AIR-SCHACH-BATTLE
+MODE: C-EXT
+STATE: ACTIVE
+
+DESCRIPTION:
+HESS ist der AIR-Kampfmodus des SCHACH-Systems.
+Er verbindet die Engine-Dateien aus core/ mit den Board- und Move-Daten aus tmp/.
+HESS erzeugt ein 9×9 AIR-Schachfeld und aktiviert die Battle-Logik.
+
+LOAD:
+- core/chess.64
+- core/chess.6d
+- core/chess.calc
+- core/chess.raw
+
+- tmp/board.matrix
+- tmp/board.state
+- tmp/board.cache
+
+- tmp/moves.anchor
+- tmp/moves.points
+
+EXT:
+- H/h.room
+- COIN.axiom
+- tetriz.tmp
+- score.tmp
+- operator.tmp
+
+OUTPUT:
+AIR-SCHACH-BATTLE
