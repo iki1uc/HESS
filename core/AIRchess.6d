@@ -1,4 +1,4 @@
-# chess.6d – 6D Vektorraum
+# AIRchess.6d – 6D Vektorraum
 # Dimensionen: Position, Figur, Farbe, Richtung, Druck, Effekt
 
 DIMENSIONS:
