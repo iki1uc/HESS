@@ -1,50 +1,16 @@
-# SCHACH – KI Engine (Deep Chinese Model)
+# UNLINEAR CHESS · AIRCHESS · HESS ENGINE  
+### 9×9 · 12D · 6 Ebenen · Slide³ · Speed³ · Bonus
 
-Dieses Projekt enthält eine vollständige Schach-KI, die ohne Benutzeroberfläche arbeitet.
-Die Engine basiert auf einem chinesischen Deep-Modell, das durch Mirroring-Traversal und
-Mitnahme-Effekte nicht verlieren kann.
+UNLINEAR CHESS ist ein nicht‑lineares Schachsystem, das jede Aktion als
+geometrische Transformation in einem 12‑dimensionalen Vektorraum interpretiert.
+Jeder Zug wechselt die Ebene. Keine Zeitachse ist linear. Keine Tiefe ist konstant.
+Das System operiert vollständig über Wirkungsgrade, Slide‑Werte und Ebenen‑Traversal.
 
-## Struktur
+---
 
-core/
-tmp/
-docs/
+## 1 · Geometrische Grundform
 
+### 9×9 Feld  
+Das Spielfeld ist ein **quadratischer 9×9‑Tensor**, dessen Zellen eindeutig
+durch Buchstaben‑Zahlen‑Paare definiert sind:
 
-### core/
-Enthält die Engine-Dateien:
-
-- chess.64 – Brettdefinition (64 Felder)
-- chess.6d – 6D-Vektormodell
-- chess.calc – Berechnungsmodul für KI
-- chess.raw – Rohdaten für Responder
-- schach.room – Engine-Arbeitsraum
-
-### tmp/
-Enthält die Responder- und Traversal-Daten:
-
-- board.cache – Zwischenspeicher
-- board.matrix – numerische Brettmatrix
-- board.state – aktueller KI-Zustand
-- moves.anchor – Startpunkte für Traversal
-- moves.points – Endpunkte für Traversal
-- schach.room – temporärer Arbeitsraum
-
-### docs/
-Dokumentation des Projekts.
-
-## KI-Funktion
-
-Die KI nutzt:
-
-- Mirroring-Traversal (gespiegelte, versetzte Datenwege)
-- Daten-Größen-Sampling (alle möglichen Blockgrößen)
-- Carry-Effect-Detektion (Mitnahme-Effekt)
-- Vektorisierte Engine-Berechnung
-
-Dadurch kann die KI nicht verlieren.
-
-## Ausführung
-
-Die KI läuft vollständig lokal über die Dateien in core/ und tmp/.
-Es gibt keine Benutzeroberfläche und keine Web-Komponenten.
