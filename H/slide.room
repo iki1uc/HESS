@@ -4,23 +4,24 @@ TYPE: TRIUMPHDIM
 STATE: ACTIVE
 
 # Grund-SLIDE
-SLIDE = (ΔLage × ΔTiefe × ΔMomentum)
-SLIDE = ΔLage + (ΔTiefe²) + (ΔMomentum³)
+SLIDE_BASE = (ΔLage × ΔTiefe × ΔMomentum)
+SLIDE_BASE = ΔLage + (ΔTiefe²) + (ΔMomentum³)
 
-# Beispiel:
-# ΔLage = 2
-# ΔTiefe = 3
-# ΔMomentum = 4
-# SLIDE = 2 + 3² + 4³ = 75
+# Zeitdimensionen
+TIME1 = (t1 × 1)
+TIME2 = (t2 × 2)²
+TIME3 = (t3 × 3)³
 
-# SPEED³-BONUS
+# Dreieck-Summe
+SLIDE_TRI = TIME1 + TIME2 + TIME3
+
+# Speed³-Bonus
 IF (moves_in_last_2_seconds >= 3)
-THEN Slide³ = TRIUMPHSPEED³
+THEN SPEED³ = (3 × 3³)
+ELSE SPEED³ = 0
 
-# TRIUMPHSPEED³-Berechnung
-Slide³ = (3 × 3³)
-Slide³ = 3 × 27
-Slide³ = 81
+# Figur-Bonus
+FIGUR_BONUS = bonus(piece_type)
 
-# FINAL-SLIDE
-SLIDE_TOTAL = SLIDE + Slide³
+# Finaler Slide-Wert
+SLIDE_TOTAL = SLIDE_BASE + SLIDE_TRI + SPEED³ + FIGUR_BONUS
