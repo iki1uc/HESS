@@ -1,35 +1,17 @@
-#HESS-ROOM
-NAME: HESS
-TYPE: AIR-SCHACH-BATTLE
-MODE: C-EXT
-STATE: ACTIVE
+# HESS.room – Autostart für UNLINEAR AIRCHESS
+
+AUTOSTART:
+FROM = C.room
+MODE = AIRCHESS
+ENGINE = UNLINEAR
+DEPTH = 6
+SPEED = X4,X8
+SELFPLAY = TRUE
 
 LOAD:
-- core/chess.64
-- core/chess.6d
-- core/chess.calc
-- core/chess.raw
-
-- tmp/board.matrix
-- tmp/board.state
-- tmp/board.cache
-
-- tmp/moves.anchor
-- tmp/moves.points
-
-EXT:
-- H/h.room
-- SLIDE/slide.room
-- COIN.axiom
-- score.tmp
-- operator.tmp
-
-SPEED³:
-IF (moves_in_last_2_seconds >= 3)
-THEN SPEED³ = 81
-EXT:
 - core/AIRchess 9mal9mal12D.raw
 - core/AIRchess.6d
-- core/airchess.slide
+- H/MOVES.POINTS
 - H/slide.room
 - score.tmp
+- H/ebene-bedeutung-6.csv
