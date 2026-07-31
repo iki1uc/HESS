@@ -2,4 +2,6 @@ SLIDE = (ΔLage × ΔTiefe × ΔMomentum)
 Slide = 2 + 3² + 4³
 Slide = 2 + 9 + 64
 Slide = 75
+IF (moves_in_last_2_seconds >= 3)
+THEN Slide³ = TRIUMPHSPEED³
 
