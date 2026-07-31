@@ -16,6 +16,46 @@
     <li>tmp/ – Responder- und Traversal-Daten</li>
     <li>docs/ – Dokumentation</li>
   </ul>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>AIR · HESS · 9×9</title>
+<style>
+body { background:#000; color:#0f0; font-family: monospace; }
+#board { margin-top:20px; }
+.cell {
+  width:40px; height:40px; display:inline-block;
+  border:1px solid #333; text-align:center; line-height:40px;
+}
+</style>
+</head>
+<body>
+
+<h1>AIR · HESS · 9×9</h1>
+<div id="board"></div>
+<pre id="score"></pre>
+<pre id="status"></pre>
+
+<script type="module">
+import { loadFile } from "./JS/loader.js";
+import { renderBoard9x9 } from "./JS/board.js";
+
+window.onload = async () => {
+
+  const matrix = JSON.parse(await loadFile("tmp/board.matrix"));
+  const moves = JSON.parse(await loadFile("tmp/moves.points"));
+  const score = await loadFile("score.tmp");
+
+  renderBoard9x9("board", matrix);
+
+  document.getElementById("score").innerText = score;
+  document.getElementById("status").innerText = "AIR-SCHACH-BATTLE aktiv";
+};
+</script>
+
+</body>
+</html>
 
   <p>Weitere Informationen findest du in der README.md.</p>
 </body>
