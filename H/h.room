@@ -1,33 +1,21 @@
-#HESS-ROOM
-NAME: HESS
-TYPE: AIR-SCHACH-BATTLE
-MODE: C-EXT
+#H-ROOM
+NAME: H
+TYPE: HEIGHT-AXIOM
+MODE: FIGURE-DEPTH
 STATE: ACTIVE
 
 DESCRIPTION:
-HESS ist der AIR-Kampfmodus des SCHACH-Systems.
-Er verbindet die Engine-Dateien aus core/ mit den Board- und Move-Daten aus tmp/.
-HESS erzeugt ein 9×9 AIR-Schachfeld und aktiviert die Battle-Logik.
+H bewertet Figuren nach Höhe, Tiefe, Axiom-Level und Lage.
+H entscheidet, ob ein Zug überhaupt Punkte verdient.
 
-LOAD:
-- core/chess.64
-- core/chess.6d
-- core/chess.calc
-- core/chess.raw
+AXIOM:
+- Y-Axiom (Höhe)
+- KI-Axiom (Diagonal)
+- E-Axiom (Orbit)
 
-- tmp/board.matrix
-- tmp/board.state
-- tmp/board.cache
-
-- tmp/moves.anchor
-- tmp/moves.points
-
-EXT:
-- H/h.room
-- COIN.axiom
-- tetriz.tmp
-- score.tmp
-- operator.tmp
-
-OUTPUT:
-AIR-SCHACH-BATTLE
+FUNCTION:
+- Figuren-Wert
+- Figuren-Lage
+- Figuren-Tiefe
+- Figuren-Axiom
+- Figuren-Score
