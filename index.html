@@ -40,6 +40,49 @@ pre {
 <pre id="engine"></pre>
 <pre id="layers"></pre>
 <pre id="score"></pre>
+function shogunPVP(playerToken, aiToken){
+
+    // Multiplikator (65% Chance auf 6x)
+    const M = Math.random() < 0.65 ? 6 : 1;
+
+    // Momentum³
+    const momentum = Math.floor(Math.random()*4);
+    const slide = momentum ** 3;
+
+    // Vitality Bonus bei 6x
+    const vitality = M === 6 ? (10 * M) : 0;
+
+    // Gewinner bestimmen
+    const winner = Math.random() < 0.5 ? "player" : "ai";
+
+    // Gewinnberechnung
+    const playerGain = (playerToken * M) + slide + vitality;
+    const aiGain     = (aiToken * M) + slide + vitality;
+
+    // 31% Fee
+    const feePlayer = playerGain * 0.31;
+    const feeAI     = aiGain * 0.31;
+
+    let playerScore = 0;
+    let aiScore = 0;
+
+    if(winner === "player"){
+        playerScore = playerGain - feePlayer;
+        aiScore = -aiToken;
+    } else {
+        aiScore = aiGain - feeAI;
+        playerScore = -playerToken;
+    }
+
+    return {
+        winner,
+        multiplier: M,
+        slide,
+        vitality,
+        playerScore,
+        aiScore
+    };
+}
 
 <script type="module">
 
