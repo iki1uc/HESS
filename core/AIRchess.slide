@@ -1,5 +1,3 @@
-# AIRchess.slide – Engine Berechnungen
-
 function mobility(piece):
     return vector(piece.pos) * piece.force * piece.tiefe_value
 
