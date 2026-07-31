@@ -11,6 +11,19 @@ load("H/MOVES.POINTS");
 load("H/slide.room");
 load("H/ebene-bedeutung-6.csv");
 load("score.tmp");
+async function ENGINE_BOOT(){
+    await load("C.room");          // Controller
+    await load("HESS.room");       // Bewertung
+    await load("core/AIRchess.6d"); 
+    await load("core/AIRchess 9mal9mal12D.raw");
+    await load("H/MOVES.POINTS");
+    await load("H/slide.room");
+    await load("H/ebene-bedeutung-6.csv");
+    await load("score.tmp");
+
+    console.log("ENGINE READY · HESS + AIRCHESS + UNLINEAR");
+}
+ENGINE_BOOT();
 
 <style>
 body {
