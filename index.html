@@ -1,85 +1,163 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <meta charset="UTF-8">
-  <title>SCHACH – KI Engine</title>
-</head>
-<body>
-  <h1>SCHACH – KI Engine</h1>
-  <p>Dieses Projekt enthält eine Schach-KI ohne Benutzeroberfläche.</p>
-  <p>Die Engine basiert auf einem chinesischen Deep-Modell und nutzt Mirroring-Traversal,
-     Daten-Größen-Sampling und Mitnahme-Effekte.</p>
-
-  <h2>Projektstruktur</h2>
-  <ul>
-    <li>core/ – Engine-Dateien</li>
-    <li>tmp/ – Responder- und Traversal-Daten</li>
-    <li>docs/ – Dokumentation</li>
-  </ul>
-<!DOCTYPE html>
-<html>
-<head>
 <meta charset="UTF-8">
-<title>AIR · HESS · 9×9</title>
+<title>UNLINEAR · AIRCHESS · HESS · 360°</title>
+
 <style>
-body { background:#000; color:#0f0; font-family: monospace; }
+body {
+  background:#000;
+  color:#0f0;
+  font-family: monospace;
+  padding:20px;
+}
+h1 { color:#0f0; }
 #board { margin-top:20px; }
+.row { display:flex; }
 .cell {
-  width:40px; height:40px; display:inline-block;
-  border:1px solid #333; text-align:center; line-height:40px;
+  width:40px;
+  height:40px;
+  border:1px solid #333;
+  text-align:center;
+  line-height:40px;
+  font-size:14px;
+}
+pre {
+  background:#111;
+  padding:10px;
+  border:1px solid #333;
+  margin-top:20px;
+  overflow:auto;
 }
 </style>
 </head>
+
 <body>
 
-<h1>AIR · HESS · 9×9</h1>
+<h1>UNLINEAR · AIRCHESS · HESS · 360° ENGINE</h1>
+
 <div id="board"></div>
+<pre id="engine"></pre>
+<pre id="layers"></pre>
 <pre id="score"></pre>
-<pre id="status"></pre>
 
 <script type="module">
-import { loadFile } from "./JS/loader.js";
-import { renderBoard9x9 } from "./JS/board.js";
 
+// ------------------------------------------------------------
+// Loader
+// ------------------------------------------------------------
+async function load(path) {
+  const res = await fetch(path);
+  return res.text();
+}
+
+// ------------------------------------------------------------
+// Board Renderer (9×9)
+// ------------------------------------------------------------
+function renderBoard(matrix) {
+  const board = document.getElementById("board");
+  board.innerHTML = "";
+  matrix.forEach(row => {
+    const r = document.createElement("div");
+    r.className = "row";
+    row.forEach(cell => {
+      const c = document.createElement("div");
+      c.className = "cell";
+      c.innerText = cell;
+      r.appendChild(c);
+    });
+    board.appendChild(r);
+  });
+}
+
+// ------------------------------------------------------------
+// UNLINEAR AIRCHESS ENGINE
+// ------------------------------------------------------------
+class UnlinearAirEngine {
+
+  constructor(board, dims, moves, hess, slide, score, ebene) {
+    this.board = board;
+    this.dims = dims;
+    this.moves = moves;
+    this.hess = hess;
+    this.slide = slide;
+    this.score = score;
+    this.ebene = ebene;
+    this.depth = 6;
+    this.speed = ["X4","X8"];
+  }
+
+  // Ebene‑Traversal
+  traverse() {
+    let out = [];
+    for (let lvl = 1; lvl <= 6; lvl++) {
+      out.push(`Ebene ${lvl}: ${this.ebene[lvl]}`);
+    }
+    return out.join("\n");
+  }
+
+  // Dummy‑Move (Engine spielt selbst)
+  step() {
+    const move = this.moves[Math.floor(Math.random()*this.moves.length)];
+
+    const slide_total =
+      move.lage_value +
+      (move.tiefe_value ** 2) +
+      (move.momentum_value ** 3) +
+      ((move.time1 * 1) +
+       (move.time2 * 2)**2 +
+       (move.time3 * 3)**3) +
+      (move.moves_last_2_seconds >= 3 ? 81 : 0) +
+      move.bonus_value;
+
+    const score_total =
+      move.axiom_value +
+      move.puzzle_value +
+      slide_total;
+
+    return {
+      move,
+      slide_total,
+      score_total
+    };
+  }
+}
+
+// ------------------------------------------------------------
+// AUTOSTART
+// ------------------------------------------------------------
 window.onload = async () => {
 
-  const matrix = JSON.parse(await loadFile("tmp/board.matrix"));
-  const moves = JSON.parse(await loadFile("tmp/moves.points"));
-  const score = await loadFile("score.tmp");
+  // Load all data
+  const board = JSON.parse(await load("core/AIRchess 9mal9mal12D.raw"));
+  const dims  = JSON.parse(await load("core/AIRchess.6d"));
+  const moves = JSON.parse(await load("H/MOVES.POINTS"));
+  const hess  = await load("H/HESS.room");
+  const slide = await load("H/slide.room");
+  const score = await load("score.tmp");
+  const ebene = JSON.parse(await load("H/ebene-bedeutung-6.csv"));
 
-  renderBoard9x9("board", matrix);
+  // Engine
+  const engine = new UnlinearAirEngine(board, dims, moves, hess, slide, score, ebene);
 
-  document.getElementById("score").innerText = score;
-  document.getElementById("status").innerText = "AIR-SCHACH-BATTLE aktiv";
+  // Render board
+  renderBoard(board);
 
-import { loadFile } from "./JS/loader.js";
-import { renderBoard9x9 } from "./JS/board.js";
-import { AirEngine } from "./JS/airengine.js";
-
-window.onload = async () => {
-
-  const board = JSON.parse(await loadFile("core/AIRchess 9mal9mal12D.raw"));
-  const dims  = JSON.parse(await loadFile("core/AIRchess.6d"));
-  const slide = await loadFile("core/airchess.slide");
-  const hess  = await loadFile("H/HESS.room");
-  const score = await loadFile("score.tmp");
-
-  const engine = new AirEngine(board, dims, slide, hess, score);
-
+  // Run engine
   const result = engine.step();
 
-  renderBoard9x9("board", board);
-  document.getElementById("output").innerText = JSON.stringify(result, null, 2);
+  // Output
+  document.getElementById("engine").innerText =
+    JSON.stringify(result, null, 2);
+
+  document.getElementById("layers").innerText =
+    engine.traverse();
+
+  document.getElementById("score").innerText =
+    "SCORE.tmp:\n" + score;
 };
 
-
-
-};
 </script>
 
-</body>
-</html>
-
-  <p>Weitere Informationen findest du in der README.md.</p>
 </body>
 </html>
