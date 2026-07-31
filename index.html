@@ -3,27 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <title>UNLINEAR · AIRCHESS · HESS · 360°</title>
-load("C.room");
-load("HESS.room");
-load("core/AIRchess.6d");
-load("core/AIRchess 9mal9mal12D.raw");
-load("H/MOVES.POINTS");
-load("H/slide.room");
-load("H/ebene-bedeutung-6.csv");
-load("score.tmp");
-async function ENGINE_BOOT(){
-    await load("C.room");          // Controller
-    await load("HESS.room");       // Bewertung
-    await load("core/AIRchess.6d"); 
-    await load("core/AIRchess 9mal9mal12D.raw");
-    await load("H/MOVES.POINTS");
-    await load("H/slide.room");
-    await load("H/ebene-bedeutung-6.csv");
-    await load("score.tmp");
-
-    console.log("ENGINE READY · HESS + AIRCHESS + UNLINEAR");
-}
-ENGINE_BOOT();
 
 <style>
 body {
@@ -51,8 +30,8 @@ pre {
   overflow:auto;
 }
 </style>
-</head>
 
+</head>
 <body>
 
 <h1>UNLINEAR · AIRCHESS · HESS · 360° ENGINE</h1>
@@ -63,6 +42,17 @@ pre {
 <pre id="score"></pre>
 
 <script type="module">
+
+// ------------------------------------------------------------
+// Loader
+// ------------------------------------------------------------
+async function load(path){
+    return fetch(path).then(r => r.text());
+}
+
+// ------------------------------------------------------------
+// ENGINE BOOT
+// ------------------------------------------------------------
 async function ENGINE_BOOT(){
     await load("C.room");
     await load("HESS.room");
@@ -78,7 +68,7 @@ async function ENGINE_BOOT(){
 ENGINE_BOOT();
 
 // ------------------------------------------------------------
-// STARTMODUL (C.room → HESS.room → index.html)
+// STARTMODUL
 // ------------------------------------------------------------
 const START = {
   mode: "AIRCHESS",
@@ -88,7 +78,7 @@ const START = {
   selfplay: true
 };
 
-// ------------------------------------------------------------
-// Loader
-// ------------------------------------------------------------
-async function load(path
+</script>
+
+</body>
+</html>
