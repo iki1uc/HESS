@@ -27,3 +27,9 @@ EXT:
 SPEED³:
 IF (moves_in_last_2_seconds >= 3)
 THEN SPEED³ = 81
+EXT:
+- core/AIRchess 9mal9mal12D.raw
+- core/AIRchess.6d
+- core/airchess.slide
+- H/slide.room
+- score.tmp
