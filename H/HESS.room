@@ -4,10 +4,6 @@ TYPE: AIR-SCHACH-BATTLE
 MODE: C-EXT
 STATE: ACTIVE
 
-DESCRIPTION:
-HESS ist der Kampfmodus des SCHACH-Systems.
-HESS aktiviert AIR-Schach, Mapping, Tiefe, Score und Speed.
-
 LOAD:
 - core/chess.64
 - core/chess.6d
@@ -23,10 +19,11 @@ LOAD:
 
 EXT:
 - H/h.room
+- SLIDE/slide.room
 - COIN.axiom
-- tetriz.tmp
 - score.tmp
 - operator.tmp
 
-OUTPUT:
-AIR-SCHACH-BATTLE
+SPEED³:
+IF (moves_in_last_2_seconds >= 3)
+THEN SPEED³ = 81
