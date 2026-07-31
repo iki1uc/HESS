@@ -1,0 +1,30 @@
+#HESS-ROOM
+NAME: HESS
+TYPE: AIR-SCHACH-BATTLE
+MODE: C-EXT
+STATE: ACTIVE
+
+DESCRIPTION:
+HESS ist der Kampfmodus des SCHACH-Systems.
+Wenn C auf HESS zugreift, wird SCHACH zu AIR-SCHACH-BATTLE.
+HESS aktiviert Höhe, Energie, Score und Speed.
+
+LOAD:
+- chess.64
+- chess.6d
+- chess.calc
+- chess.raw
+- board.matrix
+- board.state
+- moves.anchor
+- moves.points
+
+EXT:
+- h.room (Höhenraum)
+- COIN.axiom
+- tetriz.tmp
+- score.tmp
+- operator.tmp
+
+OUTPUT:
+AIR-SCHACH-BATTLE
