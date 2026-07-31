@@ -1,9 +1,26 @@
+#SLIDE-ROOM
+NAME: SLIDE
+TYPE: TRIUMPHDIM
+STATE: ACTIVE
+
+# Grund-SLIDE
 SLIDE = (ΔLage × ΔTiefe × ΔMomentum)
-Slide = 2 + 3² + 4³
-Slide = 2 + 9 + 64
-Slide = 75
+SLIDE = ΔLage + (ΔTiefe²) + (ΔMomentum³)
+
+# Beispiel:
+# ΔLage = 2
+# ΔTiefe = 3
+# ΔMomentum = 4
+# SLIDE = 2 + 3² + 4³ = 75
+
+# SPEED³-BONUS
 IF (moves_in_last_2_seconds >= 3)
 THEN Slide³ = TRIUMPHSPEED³
-Slide³ = (3 × 3³)
-Slide³ = 3 × 27 = 81
 
+# TRIUMPHSPEED³-Berechnung
+Slide³ = (3 × 3³)
+Slide³ = 3 × 27
+Slide³ = 81
+
+# FINAL-SLIDE
+SLIDE_TOTAL = SLIDE + Slide³
